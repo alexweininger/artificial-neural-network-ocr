@@ -1,3 +1,4 @@
+# Alex Weininger 2019
 import pandas as pd
 import numpy as np
 from neural_network import MultiLayerPerceptron
@@ -7,8 +8,8 @@ def loadCsv(path):
     # convert csv to an 2d array, where the labels are in col 0
     data = np.array(pd.read_csv(path, header=None))
     dataNoLabels = data[:, 1:]  # seperating labels from the data
-    labels = data[:, :1]
-    dataNoLabels = np.true_divide(dataNoLabels, 15)
+    labels = data[:, :1] # getting the labels
+    dataNoLabels = np.true_divide(dataNoLabels, 15) # normalizing the data (max = 15)
     return dataNoLabels, labels
 
 # function to convert an array of labels into a binary array
@@ -40,13 +41,4 @@ tData, tLabels = makeMiniBatches(allTData, allTLabels, size)
 vData, vLabels = makeMiniBatches(allVData, allVLabels, size)
 
 mlp = MultiLayerPerceptron(layerOptions=[16, 100, 100, 26], minibatchSize=size)
-mlp.start(tData, tLabels, vData, vLabels, learningRate=0.5, evalTrainEachEpoch=True)
-
-mlp = MultiLayerPerceptron(layerOptions=[16, 100, 100, 26], minibatchSize=size)
-mlp.start(tData, tLabels, vData, vLabels, learningRate=0.1, evalTrainEachEpoch=True)
-
-mlp = MultiLayerPerceptron(layerOptions=[16, 100, 100, 26], minibatchSize=size)
-mlp.start(tData, tLabels, vData, vLabels, learningRate=0.01, evalTrainEachEpoch=True)
-
-mlp = MultiLayerPerceptron(layerOptions=[16, 100, 100, 26], minibatchSize=size)
-mlp.start(tData, tLabels, vData, vLabels, learningRate=0.001, evalTrainEachEpoch=True)
+mlp.start(tData, tLabels, vData, vLabels, learningRate=0.05, evalTrainEachEpoch=True)

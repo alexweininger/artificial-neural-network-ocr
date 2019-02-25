@@ -1,18 +1,18 @@
+# Alex Weininger 2019
 import numpy as np
 
-
+# sigmoid activation function for the middle layers
 def calculateSigmoid(X, deriv=False):
     if not deriv:
         return 1 / (1 + np.exp(-X))
     else:
         return calculateSigmoid(X)*(1 - calculateSigmoid(X))
 
-
+# softmax activation function for the output layuers
 def calculateSoftmax(X):
     Z = np.sum(np.exp(X), axis=1)
     Z = Z.reshape(Z.shape[0], 1)
     return np.exp(X) / Z
-
 
 class PerceptronLayer:
     def __init__(self, size, minibatchSize, isInput=False, isOutput=False, activationFunction=calculateSigmoid):
